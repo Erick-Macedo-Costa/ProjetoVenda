@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Transactional
+@Transactional /*trabalha dentro do escopo de uma transação no banco de dados, a transação do banco de dados ocorre dentro do PersistenceContext */
 @Controller
 @RequestMapping("venda")
 public class VendaController {
 
-    @Autowired
+    @Autowired /* indica um ponto aonde a injeção automática deve ser aplicada. Esta pode ser usada em métodos, atributos e construtores.*/
     VendaRepository repository;
     
     @GetMapping("/form")
