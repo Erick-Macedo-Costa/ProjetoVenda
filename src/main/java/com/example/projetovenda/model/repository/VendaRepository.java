@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
    @Repository
 public class VendaRepository {
   
-    @PersistenceContext
+    @PersistenceContext /* é um local onde ficam armazenados os objetos */
     private EntityManager em;
 
     public void save(Venda venda){
