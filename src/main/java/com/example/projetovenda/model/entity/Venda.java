@@ -17,7 +17,7 @@ import javax.persistence.Table;
  *
  * @author erick
  */
-@Entity
+@Entity /*é utilizada para informar que uma classe também é uma entidade. A partir disso, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados,*/
 @Table(name = "tb_venda")
 public class Venda {
     @Id
