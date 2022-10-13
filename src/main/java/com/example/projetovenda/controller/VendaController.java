@@ -56,7 +56,7 @@ public class VendaController {
 
     @GetMapping("/list")
     public ModelAndView listar(ModelMap model) {
-        model.addAttribute("venda", repository.vendas());
+        model.addAttribute("vendas", repository.vendas());
         return new ModelAndView("/venda/list", model);
     }
 
@@ -83,7 +83,6 @@ public class VendaController {
     @PostMapping("/update")
     public ModelAndView update(Venda venda) {
         repository.update(venda);
-        
         return new ModelAndView("redirect:/venda/list");
     }
     @GetMapping("/carrinho")
@@ -96,5 +95,9 @@ public class VendaController {
         session.invalidate();
         return new ModelAndView("redirect:/venda/list");
     }
-
+    @GetMapping("/detalhes/{id}")
+    public ModelAndView detalhes(@PathVariable("id") Long id, ModelMap model) {
+        model.addAttribute("venda", repository.venda(id));
+        return new ModelAndView("/venda/detalhes", model);
+    }        
 }
