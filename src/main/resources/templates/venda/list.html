@@ -14,10 +14,11 @@
                     <th>Valor</th>
                 </tr>
             </thead>
-            <tr th:each="p : ${venda}">
+            <tr th:each="p : ${vendas}">
                 <td th:text="${p.id}"> </td>
                 <td th:text="${p.data}"> </td>
                 <td th:text="${p.total()}"> </td>
+                <td> <a th:href="@{/venda/detalhes/{id}(id=${p.id})}">Detalhes</a> </td>
             </tr>
         </table>
 
