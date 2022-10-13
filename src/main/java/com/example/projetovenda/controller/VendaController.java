@@ -72,6 +72,12 @@ public class VendaController {
         repository.remove(id);
         return new ModelAndView("redirect:/venda/list");
     }
+    
+    @GetMapping("/removecarrinho/{index}")
+    public ModelAndView removecarrinho(@PathVariable("index") int index){
+        venda.getItemvenda().remove(index);
+        return new ModelAndView("redirect:/venda/carrinho");
+    }
 
     
     @GetMapping("/edit/{id}")
