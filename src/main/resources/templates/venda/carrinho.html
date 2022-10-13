@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Carrinho</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+   <body>
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tr th:each="i,s : ${session.venda.itemvenda}">
+                <td th:text="${s.index+1}"> </td>
+                <td th:text="${i.produto.descricao}"> </td>
+                <td th:text="${i.total()}"> </td>
+            </tr>
+            <p>Valor Total: <span th:text="${session.venda.total()}"> </span> </p>
+        </table>
+
+    </body>
+</html>
