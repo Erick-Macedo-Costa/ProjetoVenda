@@ -24,7 +24,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <td th:text="${i.produto.descricao}"> </td>
                 <td th:text="${i.qtd}"> </td>
                 <td th:text="${i.total()}"> </td>
-                <td> <a onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"  th:href="@{/venda/remove/{id}(id=${i.id})}">Excluir</a> </td>
+                <td> <a onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"  th:href="@{/venda/removecarrinho/{index}(index=${s.index})}">Excluir</a> </td>
             
             </tr>
         </table>
