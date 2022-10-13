@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a>Infos da venda</a>
+        <br>
+        <a>ID - <span th:text="${venda.id}"></span></a>
+        <br>
+        <a>Data - <span th:text="${venda.data}"></span></a>
+        <p></p>
+        <table class="table" border="1">
+            <br>
+            <thead>
+                <tr><th colspan="4">Infos dos itens</th></tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Qtd</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tr th:each="p : ${venda.itemvenda}">
+                <td th:text="${p.id}"> </td>
+                <td th:text="${p.produto.descricao}"> </td>
+                <td th:text="${p.qtd}"> </td>
+                <td th:text="${p.total()}"> </td>
+            </tr>
+        </table>
+
+    </body>
+</html>
