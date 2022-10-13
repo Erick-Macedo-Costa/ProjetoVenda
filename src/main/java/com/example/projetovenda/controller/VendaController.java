@@ -9,7 +9,9 @@ package com.example.projetovenda.controller;
  * @author erick
  */
 
+import com.example.projetovenda.model.entity.ItemVenda;
 import com.example.projetovenda.model.entity.Venda;
+import com.example.projetovenda.model.repository.ProdutoRepository;
 import com.example.projetovenda.model.repository.VendaRepository;
 import javax.transaction.Transactional;
 import org.springframework.ui.ModelMap;
@@ -29,9 +31,24 @@ public class VendaController {
     @Autowired /* indica um ponto aonde a injeção automática deve ser aplicada. Esta pode ser usada em métodos, atributos e construtores.*/
     VendaRepository repository;
     
+    @Autowired /* indica um ponto aonde a injeção automática deve ser aplicada. Esta pode ser usada em métodos, atributos e construtores.*/
+    ProdutoRepository reposiprod;
+    
+    @Autowired
+    Venda venda;
+    
     @GetMapping("/form")
     public String form(Venda venda){
         return "/venda/form";
+    }
+    
+    @PostMapping("/itemsave")
+    public String itemsave (ItemVenda itemVenda){
+        itemVenda.setProduto(reposiprod.produto(itemVenda.getProduto().getId()));
+        itemVenda.setVenda(venda);
+        venda.additemVenda(itemVenda);
+        return "redirect:/produtos/listaitens";
+        
     }
 
     @GetMapping("/list")
