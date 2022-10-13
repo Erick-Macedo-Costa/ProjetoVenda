@@ -33,7 +33,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </tr>
         </table>
         <br>        
-        <a href="/venda/carrinho"><button>Carrinho</button></a>
+        <a href="/venda/carrinho"><button>Carrinho: <span th:text="${session.venda.itemvenda.size()}"></span></button></a>
         <br>
     </body>
 </html>
