@@ -25,8 +25,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <td th:text="${i.qtd}"> </td>
                 <td th:text="${i.total()}"> </td>
             </tr>
-            <p>Valor Total: <span th:text="${session.venda.total()}"> </span> </p>
         </table>
+        <p>Valor Total: <span th:text="${session.venda.total()}"> </span> </p>
         <br>        
         <a href="/venda/comprar"><button>Comprar</button></a>
     </body>
