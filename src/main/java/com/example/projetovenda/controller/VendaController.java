@@ -13,6 +13,7 @@ import com.example.projetovenda.model.entity.ItemVenda;
 import com.example.projetovenda.model.entity.Venda;
 import com.example.projetovenda.model.repository.ProdutoRepository;
 import com.example.projetovenda.model.repository.VendaRepository;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,6 +89,12 @@ public class VendaController {
     @GetMapping("/carrinho")
     public ModelAndView carrinho(){
         return new ModelAndView("/venda/carrinho");
+    }
+    @GetMapping("/comprar")
+    public ModelAndView comprar(HttpSession session){
+        repository.save(venda);
+        session.invalidate();
+        return new ModelAndView("redirect:/venda/list");
     }
 
 }
