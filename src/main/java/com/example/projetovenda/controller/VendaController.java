@@ -85,5 +85,9 @@ public class VendaController {
         
         return new ModelAndView("redirect:/venda/list");
     }
+    @GetMapping("/carrinho")
+    public ModelAndView carrinho(){
+        return new ModelAndView("/venda/carrinho");
+    }
 
 }
