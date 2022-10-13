@@ -26,7 +26,7 @@ public class VendaRepository {
         em.persist(venda);
     }
 
-    public Venda produto(Long id){
+    public Venda venda(Long id){
         return em.find(Venda.class, id);
     }
 
@@ -44,8 +44,5 @@ public class VendaRepository {
         em.merge(venda);
     }
 
-    public Object venda(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
 
