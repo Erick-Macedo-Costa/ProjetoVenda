@@ -7,6 +7,7 @@ package com.example.projetovenda.model.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Venda {
     private Long id;
     private LocalDate data = LocalDate.now();
     
-    @OneToMany(mappedBy = "venda")
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.PERSIST )
     private List<ItemVenda> itemvenda = new ArrayList();
 
     public Long getId() {
