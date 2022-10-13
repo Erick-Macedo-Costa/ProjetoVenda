@@ -10,6 +10,7 @@ package com.example.projetovenda.controller;
  */
 
 
+import com.example.projetovenda.model.entity.ItemVenda;
 import com.example.projetovenda.model.entity.Produto;
 import com.example.projetovenda.model.repository.ProdutoRepository;
 import javax.transaction.Transactional;
@@ -43,6 +44,12 @@ public class ProdutosController {
     public ModelAndView listar(ModelMap model) {
         model.addAttribute("produto", repository.produtos());
         return new ModelAndView("/produtos/list", model);
+    }
+    
+    @GetMapping("/listaitens")
+    public ModelAndView listaitens (ModelMap model, ItemVenda item) {
+        model.addAttribute("produto", repository.produtos());
+        return new ModelAndView("/produtos/listaitens", model);
     }
 
     @PostMapping("/save")
