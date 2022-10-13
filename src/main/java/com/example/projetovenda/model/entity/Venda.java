@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  *
  * @author erick
  */
-@Scope ("session")
+@Scope("session")
 @Component
 @Entity /*é utilizada para informar que uma classe também é uma entidade. A partir disso, a JPA estabelecerá a ligação entre a entidade e uma tabela de mesmo nome no banco de dados,*/
 @Table(name = "tb_venda")
@@ -28,6 +28,9 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data = LocalDate.now();
+    
+    @OneToMany(mappedBy = "venda")
+    private List<ItemVenda> itemvenda;
 
     public Long getId() {
         return id;
@@ -52,9 +55,6 @@ public class Venda {
     public void setItemvenda(List<ItemVenda> itemvenda) {
         this.itemvenda = itemvenda;
     }
-    
-    @OneToMany(mappedBy = "venda")
-    private List<ItemVenda> itemvenda;
     
     public Double total(){
      double total=0;
