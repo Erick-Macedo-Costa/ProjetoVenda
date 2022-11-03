@@ -9,12 +9,15 @@ package com.example.projetovenda.controller;
  * @author erick
  */
 
+import com.example.projetovenda.model.entity.ClienteFisica;
 import com.example.projetovenda.model.entity.ItemVenda;
 import com.example.projetovenda.model.entity.Venda;
+import com.example.projetovenda.model.repository.ClienteFRepository;
 import com.example.projetovenda.model.repository.ProdutoRepository;
 import com.example.projetovenda.model.repository.VendaRepository;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import static org.hibernate.criterion.Projections.id;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +40,9 @@ public class VendaController {
     @Autowired /* indica um ponto aonde a injeção automática deve ser aplicada. Esta pode ser usada em métodos, atributos e construtores.*/
     ProdutoRepository reposiprod;
     
+    @Autowired /* indica um ponto aonde a injeção automática deve ser aplicada. Esta pode ser usada em métodos, atributos e construtores.*/
+    ClienteFRepository reposiclient;
+    
     @Autowired
     Venda venda;
     
@@ -46,7 +52,7 @@ public class VendaController {
     }
     
     @PostMapping("/itemsave")
-    public String itemsave (ItemVenda itemVenda){
+    public String itemsave (ItemVenda itemVenda, ClienteFisica cliente){
         itemVenda.setProduto(reposiprod.produto(itemVenda.getProduto().getId()));
         itemVenda.setVenda(venda);
         venda.additemVenda(itemVenda);
@@ -92,11 +98,13 @@ public class VendaController {
         return new ModelAndView("redirect:/venda/list");
     }
     @GetMapping("/carrinho")
-    public ModelAndView carrinho(){
-        return new ModelAndView("/venda/carrinho");
+    public ModelAndView carrinho(ModelMap model){
+        model.addAttribute("clientes", reposiclient.pessoas());
+        return new ModelAndView("/venda/carrinho", model );
     }
-    @GetMapping("/comprar")
-    public ModelAndView comprar(HttpSession session){
+    @PostMapping("/comprar")
+    public ModelAndView comprar(HttpSession session,ClienteFisica cliente){
+        venda.setCliente(reposiclient.pessoa(cliente.getId()));
         repository.save(venda);
         session.invalidate();
         return new ModelAndView("redirect:/venda/list");
@@ -104,6 +112,7 @@ public class VendaController {
     @GetMapping("/detalhes/{id}")
     public ModelAndView detalhes(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("venda", repository.venda(id));
+        model.addAttribute("clientes", reposiclient.pessoas());
         return new ModelAndView("/venda/detalhes", model);
     }        
 }
