@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
@@ -34,6 +36,18 @@ public class Venda {
     @OneToMany(mappedBy = "venda", cascade = CascadeType.PERSIST )
     private List<ItemVenda> itemvenda = new ArrayList();
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private ClienteFisica cliente;
+
+    public ClienteFisica getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteFisica cliente) {
+        this.cliente = cliente;
+    }
+    
     public Long getId() {
         return id;
     }
