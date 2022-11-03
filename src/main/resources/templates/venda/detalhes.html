@@ -34,6 +34,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <td th:text="${p.total()}"> </td>
             </tr>
         </table>
+          <p></p>
+            <p></p>
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
+            <tr th:each="p : ${venda.cliente}">
+                <td th:text="${p.id}"> </td>
+                <td th:text="${p.nome}"> </td>
+                <td th:text="${p.cpf}"> </td>
+            </tr>
+        </table>
 
     </body>
 </html>
