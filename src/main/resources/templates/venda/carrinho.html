@@ -25,11 +25,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <td th:text="${i.qtd}"> </td>
                 <td th:text="${i.total()}"> </td>
                 <td> <a onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"  th:href="@{/venda/removecarrinho/{index}(index=${s.index})}">Excluir</a> </td>
-            
+            <p></p>
             </tr>
-        </table>
+            <p></p>
+        </table> 
+       <p></p>
+    <form th:action="@{/venda/comprar}" th:object="${cliente}" method="post">
+    <select th:name="id">
+        <option value="">Escolha um cliente</option>
+        <option th:each="c: ${clientes}"th:text="${c.nome}" th:value="${c.id}">Nomes</option>
+    </select>
         <p>Valor Total: <span th:text="${session.venda.total()}"> </span> </p>
-        <br>        
-        <a href="/venda/comprar"><button>Comprar</button></a>
+        <br>
+        <input type="submit" value="Comprar">
+    </form>
     </body>
 </html>
